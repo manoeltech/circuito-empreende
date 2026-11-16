@@ -1,0 +1,329 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Circuito Empreende</title>
+<meta name="description" content="Capacitação digital e ferramentas gratuitas para quem quer empreender e gerar renda na comunidade da Academia Circuito Fitness (ODS 8).">
+<style>
+  :root{
+    --orange:#ea580c; --orange-dark:#c2410c; --orange-soft:#fff1e8;
+    --ink:#1c1917; --muted:#57534e; --line:#e7e5e4; --bg:#fafaf9; --card:#ffffff;
+    --ok:#15803d; --bad:#b91c1c;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --orange:#fb923c; --orange-dark:#f97316; --orange-soft:#2a1a10;
+      --ink:#f5f5f4; --muted:#a8a29e; --line:#33302e; --bg:#141210; --card:#1d1a18;
+      --ok:#4ade80; --bad:#f87171;
+    }
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,Ubuntu,sans-serif;background:var(--bg);color:var(--ink);line-height:1.55}
+  a{color:var(--orange-dark)}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 16px}
+  header.top{background:#ea580c;color:#fff}
+  header.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-top:14px;padding-bottom:14px;flex-wrap:wrap}
+  .brand{font-weight:800;font-size:1.15rem;letter-spacing:.2px}
+  .brand small{display:block;font-weight:500;font-size:.8rem;opacity:.9}
+  nav a{color:#fff;text-decoration:none;font-weight:600;font-size:.92rem;margin-left:16px}
+  nav a:hover{text-decoration:underline}
+  .hero{background:linear-gradient(135deg,#ea580c,#9a3412);color:#fff;padding:56px 0 64px}
+  .hero h1{font-size:clamp(1.8rem,4.5vw,2.8rem);line-height:1.15;margin:12px 0 14px;max-width:760px}
+  .hero p{font-size:1.08rem;max-width:680px;opacity:.95;margin:0 0 22px}
+  .badge{display:inline-block;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.35);padding:4px 12px;border-radius:999px;font-size:.82rem;font-weight:700}
+  .btn{display:inline-block;background:#fff;color:#9a3412;font-weight:700;padding:11px 20px;border-radius:10px;text-decoration:none;border:0;cursor:pointer;font-size:.98rem}
+  .btn.ghost{background:transparent;color:#fff;border:2px solid #fff;margin-left:8px}
+  .btn.primary{background:var(--orange);color:#fff}
+  .btn.primary:hover{background:var(--orange-dark)}
+  section{padding:56px 0}
+  section h2{font-size:1.75rem;margin:0 0 8px}
+  .lead{color:var(--muted);margin:0 0 28px;max-width:760px}
+  .grid{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px}
+  .card h3{margin:0 0 8px;font-size:1.1rem}
+  .card p{margin:0;color:var(--muted)}
+  .num{display:inline-grid;place-items:center;width:34px;height:34px;border-radius:50%;background:var(--orange-soft);color:var(--orange-dark);font-weight:800;margin-bottom:10px}
+  .alt{background:var(--card);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  details{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:14px 18px;margin-bottom:12px}
+  .alt details{background:var(--bg)}
+  details summary{cursor:pointer;font-weight:700;font-size:1.05rem}
+  details[open] summary{margin-bottom:8px}
+  details ul{margin:6px 0 0;padding-left:20px}
+  details li{margin-bottom:6px}
+  .tools{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+  label{display:block;font-size:.88rem;font-weight:600;margin:10px 0 4px}
+  input,select,textarea{width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:9px;font:inherit;background:var(--bg);color:var(--ink)}
+  textarea{min-height:80px;resize:vertical}
+  .row{display:flex;gap:10px}
+  .row>*{flex:1}
+  .result{margin-top:14px;padding:14px;border-radius:10px;background:var(--orange-soft)}
+  .result strong{font-size:1.4rem;color:var(--orange-dark)}
+  table{width:100%;border-collapse:collapse;margin-top:12px;font-size:.92rem}
+  th,td{text-align:left;padding:7px 6px;border-bottom:1px solid var(--line)}
+  td.v{text-align:right;white-space:nowrap}
+  .in{color:var(--ok)} .out{color:var(--bad)}
+  .x{background:none;border:0;color:var(--muted);cursor:pointer;font-size:1rem}
+  .small{font-size:.85rem;color:var(--muted)}
+  .ods{display:flex;gap:18px;align-items:center;flex-wrap:wrap}
+  .ods .tile{background:#a21942;color:#fff;border-radius:12px;padding:18px;width:150px;font-weight:800;line-height:1.2}
+  .ods .tile span{display:block;font-size:2.4rem}
+  .timeline li{margin-bottom:10px}
+  footer{background:#1c1917;color:#d6d3d1;padding:28px 0;font-size:.9rem}
+  footer a{color:#fdba74}
+  @media (max-width:640px){
+    nav{width:100%}
+    nav a{margin:0 14px 0 0}
+    .btn.ghost{margin:10px 0 0}
+    .row{flex-direction:column;gap:0}
+  }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <div class="brand">Circuito Empreende<small>Academia Circuito Fitness · Coremas, PB</small></div>
+    <nav>
+      <a href="#trilha">Trilha</a>
+      <a href="#ferramentas">Ferramentas</a>
+      <a href="#ideias">Ideias</a>
+      <a href="#oficina">Oficina</a>
+    </nav>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="wrap">
+    <span class="badge">Projeto de extensão · ODS 8 – Trabalho decente e crescimento econômico</span>
+    <h1>Tecnologia para gerar renda dentro da comunidade fitness</h1>
+    <p>Uma trilha gratuita e ferramentas simples para alunas, instrutores e colaboradores da Academia Circuito Fitness que querem começar ou organizar um pequeno negócio: divulgar no digital, atender pelo WhatsApp, calcular o preço certo e controlar o próprio dinheiro.</p>
+    <a class="btn" href="#trilha">Começar a trilha</a>
+    <a class="btn ghost" href="#ferramentas">Usar as ferramentas</a>
+  </div>
+</div>
+
+<section id="sobre">
+  <div class="wrap">
+    <h2>Por que este projeto?</h2>
+    <p class="lead">Muita gente que frequenta a academia já vende algo ou presta algum serviço — marmitas fit, roupas de treino, bolos, aulas, design, maquiagem — mas faz tudo "de cabeça", sem saber se está tendo lucro e sem usar a internet a seu favor. O Circuito Empreende junta o que aprendi em Engenharia de Software com uma necessidade real da comunidade.</p>
+    <div class="grid">
+      <div class="card"><div class="num">1</div><h3>Aprender</h3><p>Quatro módulos curtos, em linguagem simples, para ler no celular entre um treino e outro.</p></div>
+      <div class="card"><div class="num">2</div><h3>Praticar</h3><p>Calculadora de preço, controle de caixa e gerador de link de WhatsApp — tudo gratuito e direto no navegador.</p></div>
+      <div class="card"><div class="num">3</div><h3>Crescer</h3><p>Ideias de negócio ligadas à rotina da academia e uma oficina presencial para tirar dúvidas.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="trilha" class="alt">
+  <div class="wrap">
+    <h2>Trilha de capacitação digital</h2>
+    <p class="lead">Clique em cada módulo para abrir o conteúdo. Leve no máximo 10 minutos por módulo.</p>
+
+    <details open>
+      <summary>Módulo 1 · Presença digital: ser encontrado por quem procura</summary>
+      <ul>
+        <li><b>Perfil do Google (Google Meu Negócio):</b> é gratuito e faz o seu negócio aparecer no Google Maps quando alguém pesquisa "marmita fit em Coremas", por exemplo. Cadastre endereço ou área de atendimento, horário e fotos reais.</li>
+        <li><b>Instagram profissional:</b> mude a conta para "Profissional" para ver estatísticas. Na bio, diga em uma frase o que você vende, para quem e como pedir.</li>
+        <li><b>Fotos que vendem:</b> luz natural, fundo limpo, produto no centro. O celular é suficiente.</li>
+        <li><b>Constância vence quantidade:</b> 3 publicações por semana, sempre nos mesmos dias, funcionam melhor que 10 num dia e nada no resto do mês.</li>
+      </ul>
+    </details>
+
+    <details>
+      <summary>Módulo 2 · Atendimento com WhatsApp Business</summary>
+      <ul>
+        <li><b>Use o app WhatsApp Business</b> (gratuito) para separar o pessoal do profissional.</li>
+        <li><b>Catálogo:</b> cadastre produtos ou serviços com foto, preço e descrição. O cliente vê tudo sem precisar perguntar.</li>
+        <li><b>Respostas rápidas:</b> salve mensagens prontas (cardápio, formas de pagamento, prazo de entrega) e use com "/".</li>
+        <li><b>Etiquetas:</b> marque conversas como "novo pedido", "pago", "entregue" para não perder nenhum cliente.</li>
+        <li><b>Link direto:</b> gere um link que já abre a conversa com uma mensagem pronta — use a ferramenta abaixo.</li>
+      </ul>
+    </details>
+
+    <details>
+      <summary>Módulo 3 · Preço justo: quanto cobrar sem ter prejuízo</summary>
+      <ul>
+        <li><b>Custo variável:</b> o que você gasta para fazer cada unidade (ingredientes, embalagem, tecido, transporte).</li>
+        <li><b>Seu tempo também custa:</b> defina quanto quer ganhar por hora e multiplique pelo tempo de produção.</li>
+        <li><b>Custos fixos:</b> gás, internet, energia, aluguel — divida pelo número de unidades que você vende no mês.</li>
+        <li><b>Margem:</b> o que sobra para o negócio crescer. Comece com 20% a 30% e ajuste conforme o mercado.</li>
+        <li>Preço sugerido = (custo variável + mão de obra + parte dos fixos) ÷ (1 − margem). A calculadora abaixo faz a conta.</li>
+      </ul>
+    </details>
+
+    <details>
+      <summary>Módulo 4 · Organização financeira e formalização</summary>
+      <ul>
+        <li><b>Separe o dinheiro:</b> tenha uma conta (ou carteira digital) só para o negócio e pague a si mesmo um "salário".</li>
+        <li><b>Anote tudo:</b> toda entrada e saída, no mesmo dia. Use o controle de caixa abaixo ou um caderno — o importante é a constância.</li>
+        <li><b>Pix com QR Code:</b> deixe impresso no balcão ou na embalagem; facilita o pagamento e evita troco.</li>
+        <li><b>MEI:</b> para muitas atividades é possível se formalizar como Microempreendedor Individual, com CNPJ, emissão de nota e acesso a benefícios do INSS. Confira as atividades permitidas e o limite de faturamento atual no Portal do Empreendedor (gov.br/mei).</li>
+        <li><b>Profissões regulamentadas</b> (como profissional de Educação Física e nutricionista) têm regras próprias do conselho de classe — informe-se antes de oferecer o serviço.</li>
+      </ul>
+    </details>
+  </div>
+</section>
+
+<section id="ferramentas">
+  <div class="wrap">
+    <h2>Ferramentas gratuitas</h2>
+    <p class="lead">Funcionam direto no navegador do celular. Os lançamentos do controle de caixa ficam salvos apenas no seu aparelho.</p>
+
+    <div class="tools">
+      <div class="card">
+        <h3>Calculadora de preço</h3>
+        <p class="small">Descubra o preço mínimo para não ter prejuízo e o preço sugerido com margem.</p>
+        <label for="cv">Custo dos materiais por unidade (R$)</label>
+        <input id="cv" type="number" min="0" step="0.01" value="8.50">
+        <div class="row">
+          <div><label for="tempo">Tempo por unidade (min)</label><input id="tempo" type="number" min="0" value="20"></div>
+          <div><label for="hora">Quero ganhar por hora (R$)</label><input id="hora" type="number" min="0" step="0.5" value="15"></div>
+        </div>
+        <div class="row">
+          <div><label for="fixos">Custos fixos do mês (R$)</label><input id="fixos" type="number" min="0" step="1" value="150"></div>
+          <div><label for="qtd">Unidades vendidas no mês</label><input id="qtd" type="number" min="1" value="100"></div>
+        </div>
+        <label for="margem">Margem de lucro (%)</label>
+        <input id="margem" type="number" min="0" max="90" value="25">
+        <div class="result" id="precoOut"></div>
+      </div>
+
+      <div class="card">
+        <h3>Controle de caixa</h3>
+        <p class="small">Anote entradas e saídas e acompanhe o saldo do mês.</p>
+        <form id="caixaForm">
+          <label for="desc">Descrição</label>
+          <input id="desc" required placeholder="Ex.: 10 marmitas vendidas">
+          <div class="row">
+            <div><label for="tipo">Tipo</label>
+              <select id="tipo"><option value="in">Entrada</option><option value="out">Saída</option></select></div>
+            <div><label for="valor">Valor (R$)</label><input id="valor" type="number" min="0.01" step="0.01" required></div>
+          </div>
+          <p style="margin:12px 0 0"><button class="btn primary" type="submit">Adicionar</button></p>
+        </form>
+        <table><thead><tr><th>Lançamento</th><th class="v" style="text-align:right">Valor</th><th></th></tr></thead><tbody id="caixaBody"></tbody></table>
+        <div class="result" id="saldoOut"></div>
+        <p class="small"><a href="#" id="csv">Baixar planilha (CSV)</a></p>
+      </div>
+
+      <div class="card">
+        <h3>Link de WhatsApp com mensagem pronta</h3>
+        <p class="small">Coloque na bio do Instagram, no cartão de visita ou num QR Code.</p>
+        <label for="tel">Seu número com DDD</label>
+        <input id="tel" inputmode="numeric" placeholder="83 99999-9999">
+        <label for="msg">Mensagem que o cliente vai enviar</label>
+        <textarea id="msg">Olá! Vi seu trabalho pelo Circuito Empreende e gostaria de fazer um pedido.</textarea>
+        <p style="margin:12px 0 0"><button class="btn primary" id="gerar" type="button">Gerar link</button></p>
+        <div class="result" id="linkOut" hidden></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="ideias" class="alt">
+  <div class="wrap">
+    <h2>Ideias de negócio na comunidade fitness</h2>
+    <p class="lead">Oportunidades que nasceram de conversas com alunas e colaboradores da academia.</p>
+    <div class="grid">
+      <div class="card"><h3>Marmitas e lanches fit</h3><p>Cardápio semanal com encomenda até a véspera; entrega no horário de saída do treino.</p></div>
+      <div class="card"><h3>Moda fitness</h3><p>Revenda ou costura de roupas de treino, com catálogo no WhatsApp Business e pagamento por Pix.</p></div>
+      <div class="card"><h3>Social media para negócios locais</h3><p>Quem domina o Instagram pode cuidar das redes de academias, salões e lojas da cidade.</p></div>
+      <div class="card"><h3>Suplementos e bebidas</h3><p>Garrafas de água, isotônicos e lanches vendidos com autorização da academia.</p></div>
+      <div class="card"><h3>Serviços de beleza e bem-estar</h3><p>Manicure, maquiagem, depilação — agenda organizada por link de WhatsApp.</p></div>
+      <div class="card"><h3>Aulas e acompanhamento</h3><p>Profissionais de Educação Física registrados no CREF podem divulgar horários de aulas e consultorias.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="oficina">
+  <div class="wrap">
+    <h2>Oficina presencial</h2>
+    <p class="lead">Encontros na recepção da Academia Circuito Fitness para usar o site junto com os participantes, no próprio celular de cada um.</p>
+    <ol class="timeline">
+      <li><b>Encontro 1:</b> apresentação do projeto e do ODS 8; criação do perfil do Google e do Instagram profissional.</li>
+      <li><b>Encontro 2:</b> configuração do WhatsApp Business (catálogo, respostas rápidas, etiquetas) e geração do link de atendimento.</li>
+      <li><b>Encontro 3:</b> cálculo de preço de um produto real de cada participante e início do controle de caixa.</li>
+      <li><b>Encontro 4:</b> formalização (MEI), troca de experiências e coleta de feedback para melhorar o site.</li>
+    </ol>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap ods">
+    <div class="tile"><span>8</span>Trabalho decente e crescimento econômico</div>
+    <div style="flex:1;min-width:240px">
+      <h2>Alinhado ao ODS 8 da ONU</h2>
+      <p class="lead" style="margin:0">O projeto contribui para promover políticas que apoiem atividades produtivas, a geração de renda, o empreendedorismo, a criatividade e a inovação, com foco em mulheres e jovens da comunidade — usando a tecnologia como ferramenta de inclusão econômica.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    Projeto de extensão em Engenharia de Software — Cruzeiro do Sul Virtual.<br>
+    Desenvolvido por Manoel Pereira Neto em parceria com a Academia Circuito Fitness, Coremas – PB · 2026.
+  </div>
+</footer>
+
+<script>
+  const brl = v => v.toLocaleString('pt-BR',{style:'currency',currency:'BRL'});
+  const num = id => parseFloat(document.getElementById(id).value) || 0;
+
+  function calcPreco(){
+    const cv = num('cv'), mo = num('tempo')/60*num('hora');
+    const qtd = Math.max(num('qtd'),1), fixo = num('fixos')/qtd;
+    const m = Math.min(num('margem'),90)/100;
+    const custo = cv + mo + fixo, preco = custo/(1-m);
+    document.getElementById('precoOut').innerHTML =
+      `Custo total por unidade: ${brl(custo)}<br>`+
+      `<small>(materiais ${brl(cv)} + seu tempo ${brl(mo)} + fixos ${brl(fixo)})</small><br>`+
+      `Preço sugerido: <strong>${brl(preco)}</strong><br>`+
+      `<small>Lucro por unidade: ${brl(preco-custo)} · no mês: ${brl((preco-custo)*qtd)}</small>`;
+  }
+  ['cv','tempo','hora','fixos','qtd','margem'].forEach(id=>document.getElementById(id).addEventListener('input',calcPreco));
+  calcPreco();
+
+  const KEY='circuito-empreende-caixa';
+  let itens=[];
+  try{ itens = JSON.parse(localStorage.getItem(KEY)) || []; }catch(e){ itens=[]; }
+  const salvar=()=>{ try{ localStorage.setItem(KEY,JSON.stringify(itens)); }catch(e){} };
+  const esc=s=>s.replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+  function render(){
+    const body=document.getElementById('caixaBody');
+    body.innerHTML = itens.length ? itens.map((it,i)=>
+      `<tr><td>${esc(it.d)}</td><td class="v ${it.t}">${it.t==='in'?'+':'−'} ${brl(it.v)}</td><td><button class="x" data-i="${i}" aria-label="Remover">✕</button></td></tr>`).join('')
+      : '<tr><td colspan="3" class="small">Nenhum lançamento ainda.</td></tr>';
+    const ent=itens.filter(i=>i.t==='in').reduce((a,i)=>a+i.v,0);
+    const sai=itens.filter(i=>i.t==='out').reduce((a,i)=>a+i.v,0);
+    document.getElementById('saldoOut').innerHTML=`Entradas ${brl(ent)} · Saídas ${brl(sai)}<br>Saldo: <strong>${brl(ent-sai)}</strong>`;
+  }
+  document.getElementById('caixaForm').addEventListener('submit',e=>{
+    e.preventDefault();
+    itens.push({d:document.getElementById('desc').value.trim(),t:document.getElementById('tipo').value,v:num('valor')});
+    salvar(); render(); e.target.reset();
+  });
+  document.getElementById('caixaBody').addEventListener('click',e=>{
+    if(e.target.dataset.i!==undefined){ itens.splice(+e.target.dataset.i,1); salvar(); render(); }
+  });
+  document.getElementById('csv').addEventListener('click',e=>{
+    e.preventDefault();
+    const linhas=[['Descricao','Tipo','Valor'],...itens.map(i=>[`"${i.d.replace(/"/g,'""')}"`,i.t==='in'?'Entrada':'Saida',i.v.toFixed(2).replace('.',',')])];
+    const blob=new Blob(['﻿'+linhas.map(l=>l.join(';')).join('\n')],{type:'text/csv'});
+    const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='controle-de-caixa.csv'; a.click();
+  });
+  render();
+
+  document.getElementById('gerar').addEventListener('click',()=>{
+    let tel=document.getElementById('tel').value.replace(/\D/g,'');
+    const out=document.getElementById('linkOut'); out.hidden=false;
+    if(tel.length<10){ out.textContent='Digite o número com DDD (10 ou 11 dígitos).'; return; }
+    if(!tel.startsWith('55')) tel='55'+tel;
+    const link=`https://wa.me/${tel}?text=${encodeURIComponent(document.getElementById('msg').value)}`;
+    out.innerHTML=`<a href="${link}" target="_blank" rel="noopener" style="word-break:break-all">${esc(link)}</a><br><button class="btn primary" style="margin-top:10px" id="copiar" type="button">Copiar link</button>`;
+    document.getElementById('copiar').onclick=()=>navigator.clipboard.writeText(link).then(()=>document.getElementById('copiar').textContent='Copiado!');
+  });
+</script>
+</body>
+</html>
